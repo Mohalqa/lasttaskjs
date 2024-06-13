@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON</title>
+</head>
+<body>
+  <form action="">
+    <label for="name">Name: <input type="text" name="name" id="name"></label>
+    <label for="Email">Email: <input type="email" name="email" id="Email"></label>
+    <label for="number">Number: <input type="text" name="number" id="number"></label>
+    <button type="button" id="printButton">Print</button>  
+  </form>
+  <hr>
+  
+  
+  <table id="dataTable" border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will be added here dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const printButton = document.getElementById("printButton"); // Get the button reference
+
+      function printFormData() {
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("Email");
+        const numberInput = document.getElementById("number");
+
+        const userData = {
+          name: nameInput.value,
+          email: emailInput.value,
+          number: numberInput.value
+        };
+
+        // Get the table body element
+        const tbody = document.querySelector("#dataTable tbody");
+
+        // Create a new row and cells
+        const dataRow = document.createElement("tr");
+        Object.values(userData).forEach(value => {
+          const td = document.createElement("td");
+          td.textContent = value;
+          dataRow.appendChild(td);
+        });
+
+        // Append the new row to the table body
+        tbody.appendChild(dataRow);
+      }
+
+      printButton.addEventListener("click", printFormData); // Add event listener
+    });
+  </script>
+</body>
+</html>
+
